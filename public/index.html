@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Yeet blinker</title>
+  </head>
+  <body>
+    <div id="app">
+      <button @click="blink">Blink</button>
+      <button @click="stop">Stop</button>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      const socket = io();
+      new Vue({
+        el: '#app',
+        data() {
+          return {};
+        },
+        methods: {
+          blink() {
+            this.socket.emit('blink');
+          },
+          stop() {
+            this.socket.emit('stop');
+          }
+        },
+        mounted() {
+          this.socket = io();
+        }
+      });
+    </script>
+  </body>
+</html>
